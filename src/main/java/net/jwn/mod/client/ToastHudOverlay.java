@@ -7,7 +7,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.client.gui.overlay.IGuiOverlay;
 
 public class ToastHudOverlay {
-    public static final int TIMER = 1000;
+    public static final int TIMER = 1000; // 대략 5초?
 
     private static final ResourceLocation TOAST = new ResourceLocation(Main.MOD_ID, "textures/hud/toast.png");
 

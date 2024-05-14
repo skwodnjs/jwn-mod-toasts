@@ -1,6 +1,7 @@
 package net.jwn.mod.event;
 
 import net.jwn.mod.Main;
+import net.jwn.mod.client.LoadingHudOverlay;
 import net.jwn.mod.client.ToastHudOverlay;
 import net.jwn.mod.util.KeyBinding;
 import net.minecraft.client.Minecraft;
@@ -40,7 +41,10 @@ public class ClientEvents {
                 }
             } else if (KeyBinding.CUSTOM_3_KEY.consumeClick()) {
                 if (player != null) {
-                    player.sendSystemMessage(Component.literal("Custom 3 Key: Loading Switch"));
+//                    player.sendSystemMessage(Component.literal("Custom 3 Key: Loading Switch"));
+                    player.getPersistentData().putBoolean(Main.MOD_ID + "_isLoading",
+                            !player.getPersistentData().getBoolean(Main.MOD_ID + "_isLoading"));
+                    player.getPersistentData().putInt(Main.MOD_ID + "_loading", 0);
                 }
             }
         }
@@ -57,7 +61,8 @@ public class ClientEvents {
 
         @SubscribeEvent
         public static void onRegisterGuiOverlaysEvent(RegisterGuiOverlaysEvent event) {
-            event.registerAboveAll("standby_hud", ToastHudOverlay.TOAST_HUD);
+            event.registerAboveAll("toast_hud", ToastHudOverlay.TOAST_HUD);
+            event.registerAboveAll("loading_hud", LoadingHudOverlay.LOADING_HUD);
         }
     }
 }
